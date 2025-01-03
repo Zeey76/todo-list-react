@@ -1,12 +1,14 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import TaskInput from "./components/TaskInput";
 import FilterButtons from "./components/FilterButtons";
 import TaskList from "./components/TaskList";
+import TaskReducer from "./components/TaskReducer";
 
 function App() {
-  const [tasks, setTasks] = useState(() => {
-    return JSON.parse(localStorage.getItem("tasks")) || [];
+  const [tasks, dispatch] = useReducer(TaskReducer, [], () => {
+    const savedTasks = JSON.parse(localStorage.getItem("tasks"));
+    return savedTasks || [];
   });
   const [taskInput, setTaskInput] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
@@ -17,13 +19,10 @@ function App() {
 
   function addTask() {
     if (!taskInput.trim()) return;
-    setTasks([
-      ...tasks,
-      {
-        text: taskInput,
-        completed: false,
-      },
-    ]);
+    dispatch({
+      type: "AddTask",
+      text: taskInput,
+    });
     setTaskInput("");
   }
 
@@ -31,18 +30,20 @@ function App() {
     setActiveFilter(filter);
   };
 
-  const clearTasks = () => setTasks([]);
+  const clearTasks = () => dispatch({ type: "ClearTasks" });
 
   function toggleTask(index) {
-    const updatedTasks = tasks.map((task, i) =>
-      i === index ? { ...task, completed: !task.completed } : task
-    );
-    setTasks(updatedTasks);
+    dispatch({
+      type: "ToggleTask",
+      index: index,
+    });
   }
 
   function deleteTask(index) {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTasks(updatedTasks);
+    dispatch({
+      type: "DeleteTask",
+      index: index,
+    });
   }
 
   const filteredTasks = tasks.filter((task) => {
