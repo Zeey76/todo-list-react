@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div className="container">
-      <div class="task-title">
+      <div className="task-title">
         <header>
           <h2>To Do List</h2>
         </header>
@@ -64,13 +64,13 @@ function App() {
           addTask={addTask}
         />
       </div>
-      <div class="main">
-        <div class="tasks-bar">
+      <div className="main">
+        <div className="tasks-bar">
           <FilterButtons
             activeFilter={activeFilter}
             handleFilterChange={handleFilterChange}
           />
-          <button class="clear-tasks" onClick={clearTasks}>
+          <button className="clear-tasks" onClick={clearTasks}>
             Clear All
           </button>
         </div>
