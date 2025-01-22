@@ -1,4 +1,4 @@
-function TaskInput({ taskInput, setTaskInput, addTask }) {
+const TaskInput = ({ taskInput, setTaskInput, addTask }) => {
   return (
     <>
       <div class="task-input">
@@ -14,6 +14,5 @@ function TaskInput({ taskInput, setTaskInput, addTask }) {
       </div>
     </>
   );
-}
-
+};
 export default TaskInput;

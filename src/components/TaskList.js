@@ -1,4 +1,4 @@
-function TaskList({ tasks, toggleTask, deleteTask }) {
+const TaskList = ({ tasks, toggleTask, deleteTask }) => {
   return (
     <>
       <ul class="task-list">
@@ -9,7 +9,7 @@ function TaskList({ tasks, toggleTask, deleteTask }) {
                 className={`check-icon ${task.completed ? "ticked" : ""}`}
                 onClick={() => toggleTask(index)}
               >
-                {task.completed && <img src="./icons/icon-check.svg" />}
+                {task.completed && <img src="./icons/icon-check.svg" alt="check-icon"/>}
               </div>
               <p
                 className={task.completed ? "completed" : ""}
@@ -27,5 +27,4 @@ function TaskList({ tasks, toggleTask, deleteTask }) {
     </>
   );
 }
-
 export default TaskList;

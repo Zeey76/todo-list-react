@@ -1,4 +1,4 @@
-function FilterButtons({ activeFilter, handleFilterChange }) {
+const FilterButtons = ({ activeFilter, handleFilterChange }) => {
   const filters = ["all", "pending", "completed"];
   return (
     <div class="task-display-bar">
@@ -12,6 +12,5 @@ function FilterButtons({ activeFilter, handleFilterChange }) {
       ))}
     </div>
   );
-}
-
+};
 export default FilterButtons;

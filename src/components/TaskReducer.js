@@ -1,4 +1,4 @@
-export default function TaskReducer(state, action) {
+const TaskReducer = (state, action) => {
   switch (action.type) {
     case "AddTask":
       return [
@@ -19,4 +19,5 @@ export default function TaskReducer(state, action) {
     default:
       return state;
   }
-}
+};
+export default TaskReducer;
